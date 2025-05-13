@@ -125,10 +125,12 @@ function App() {
   // Quick course recommendation (original functionality)
   const askForSelection = () => {
     // Get checked courses from both sections
-    const checkedCourses = currentSelections.filter(c => c.isChecked).concat(previousSelections.filter(c => c.isChecked));
+    const checkedCurrent = currentSelections.filter(c => c.isChecked);
+    const checkedPrevious = previousSelections.filter(c => c.isChecked);
+    const allChecked = [...checkedCurrent, ...checkedPrevious];
     
     // Validate that at least one course is selected
-    if (checkedCourses.length === 0) {
+    if (allChecked.length === 0) {
       setAiSelection("Please select at least one course to get a recommendation.");
       return;
     }
@@ -136,7 +138,7 @@ function App() {
     // Send the courses to GPT
     chrome.runtime.sendMessage({
       action: 'getAiSelection',
-      courses: checkedCourses
+      courses: allChecked
     }, (response) => {
       if (response?.answer) setAiSelection(response.answer);
     });
@@ -144,19 +146,21 @@ function App() {
 
   // Get a single course summary from GPT
   const askForCourseSummary = () => {
-    // Get checked courses from current selections only
+    // Get checked courses from both current and previous selections
     const checkedCurrent = currentSelections.filter(c => c.isChecked);
+    const checkedPrevious = previousSelections.filter(c => c.isChecked);
+    const allChecked = [...checkedCurrent, ...checkedPrevious];
     
     // Validate that exactly one course is selected
-    if (checkedCurrent.length !== 1) {
-      setSingleCourseAnalysis("Please select exactly one course from Currently Selected section.");
+    if (allChecked.length !== 1) {
+      setSingleCourseAnalysis("Please select exactly one course from either section.");
       return;
     }
     
     // Send the course to GPT
     chrome.runtime.sendMessage({
       action: 'getCourseSummary',
-      course: checkedCurrent[0]
+      course: allChecked[0]
     }, (response) => {
       if (response?.answer) setSingleCourseAnalysis(response.answer);
     });
@@ -164,19 +168,31 @@ function App() {
 
   // Compare multiple courses and get a recommendation
   const askForCourseRecommendation = () => {
-    // Get checked courses from previous selections only
+    // Get checked courses from both current and previous selections
+    const checkedCurrent = currentSelections.filter(c => c.isChecked);
     const checkedPrevious = previousSelections.filter(c => c.isChecked);
     
-    // Validate that at least two courses are selected
-    if (checkedPrevious.length < 2) {
-      setMultiCourseRecommendation("Please select at least two courses from Previously Selected section.");
+    // Combine and filter out duplicates based on course ID
+    const allChecked = [...checkedCurrent, ...checkedPrevious];
+    const uniqueIds = new Set();
+    const uniqueCourses = allChecked.filter(course => {
+      if (uniqueIds.has(course.id)) {
+        return false; // Skip this course as it's a duplicate
+      }
+      uniqueIds.add(course.id);
+      return true;
+    });
+    
+    // Validate that at least two unique courses are selected
+    if (uniqueCourses.length < 2) {
+      setMultiCourseRecommendation("Please select at least two different courses to compare.");
       return;
     }
     
-    // Send the courses to GPT
+    // Send the unique courses to GPT
     chrome.runtime.sendMessage({
       action: 'getCourseRecommendation',
-      courses: checkedPrevious
+      courses: uniqueCourses
     }, (response) => {
       if (response?.answer) setMultiCourseRecommendation(response.answer);
     });
@@ -1224,7 +1240,7 @@ function App() {
               Ask ChatGPT: Summarize Course
             </button>
             <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-              Select exactly one course from Currently Selected section to generate a summary.
+              Select exactly one course from either section to generate a detailed summary.
             </p>
             
             {/* Single Course Response Panel */}
@@ -1270,7 +1286,7 @@ function App() {
               Ask ChatGPT: Compare Courses
             </button>
             <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-              Select 2 or more courses from Previously Selected for a detailed comparison.
+              Select 2 or more courses from either section for a detailed comparison.
             </p>
 
             {/* Multi-Course Response Panel */}
