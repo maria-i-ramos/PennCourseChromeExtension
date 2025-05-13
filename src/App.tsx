@@ -122,23 +122,23 @@ function App() {
     chrome.storage.local.set({ openaiKey: apiKey });
   };
 
-  // Quick course recommendation (for a single course)
+  // Quick course recommendation (original functionality)
   const askForSelection = () => {
     // Get checked courses from both sections
     const checkedCurrent = currentSelections.filter(c => c.isChecked);
     const checkedPrevious = previousSelections.filter(c => c.isChecked);
     const allChecked = [...checkedCurrent, ...checkedPrevious];
     
-    // Validate that exactly one course is selected
-    if (allChecked.length !== 1) {
-      setAiSelection("Please select exactly one course from either section.");
+    // Validate that at least one course is selected
+    if (allChecked.length === 0) {
+      setAiSelection("Please select at least one course to get a recommendation.");
       return;
     }
     
-    // Send the single course to GPT
+    // Send the courses to GPT
     chrome.runtime.sendMessage({
       action: 'getAiSelection',
-      courses: [allChecked[0]]
+      courses: allChecked
     }, (response) => {
       if (response?.answer) setAiSelection(response.answer);
     });
@@ -146,19 +146,21 @@ function App() {
 
   // Get a single course summary from GPT
   const askForCourseSummary = () => {
-    // Get checked courses from current selections only
+    // Get checked courses from both current and previous selections
     const checkedCurrent = currentSelections.filter(c => c.isChecked);
+    const checkedPrevious = previousSelections.filter(c => c.isChecked);
+    const allChecked = [...checkedCurrent, ...checkedPrevious];
     
     // Validate that exactly one course is selected
-    if (checkedCurrent.length !== 1) {
-      setSingleCourseAnalysis("Please select exactly one course from Currently Selected section.");
+    if (allChecked.length !== 1) {
+      setSingleCourseAnalysis("Please select exactly one course from either section.");
       return;
     }
     
     // Send the course to GPT
     chrome.runtime.sendMessage({
       action: 'getCourseSummary',
-      course: checkedCurrent[0]
+      course: allChecked[0]
     }, (response) => {
       if (response?.answer) setSingleCourseAnalysis(response.answer);
     });
@@ -1199,7 +1201,7 @@ function App() {
               Ask ChatGPT: Which course should I take?
             </button>
             <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-              Select exactly one course from either section for a quick evaluation.
+              Select courses from either section for a quick, concise recommendation.
             </p>
             
             {/* Quick Recommendation Response Panel */}
@@ -1238,7 +1240,7 @@ function App() {
               Ask ChatGPT: Summarize Course
             </button>
             <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-              Select exactly one course from Currently Selected section to generate a summary.
+              Select exactly one course from either section to generate a detailed summary.
             </p>
             
             {/* Single Course Response Panel */}

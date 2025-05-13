@@ -69,10 +69,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       };
       const user = {
         role: 'user',
-        content: `I'm interested in this course: ${courseList} 
-        Based on the stats like workload, difficulty, and quality averages, please give me a quick evaluation of this course.
-        Would this be a good course to take? What should I be aware of?
-        Keep your answer brief - 2-3 sentences maximum. Be concise and quantitative.`
+        content: `Here are the courses I'm interested in: ${courseList} 
+        Based on their stats like workload, difficulty, and quality averages, which one would you recommend I take this coming semester? 
+        You have to pick one course and one course only. Assume I am equally interested in all of them. I need to know which is best.
+        Explain briefly but limit your answer to 2-3 sentences and be concise and quantitative.`
       };
 
       // Call OpenAI
