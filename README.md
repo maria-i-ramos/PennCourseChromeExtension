@@ -67,6 +67,9 @@ Now, open a google chrome tab and follow these steps:
 
 > 💡 If multiple course IDs are highlighted, the first valid one is selected.
 
+
+![DemoQuickFetch](https://github.com/fbc101/PennCourseChromeExtension/assets/157915007/6da5e2da-2a58-4f60-b61a-e23228f950e3)
+
 ### 🔎 Search Tab
 
 1. Open the extension popup.
@@ -74,6 +77,8 @@ Now, open a google chrome tab and follow these steps:
 3. Press `Enter` or click `Search` to fetch results.
 
 > 💡 Not case-sensitive. `cis 1600` works just as well as `CIS 1600`.
+
+![searchtab](https://github.com/fbc101/PennCourseChromeExtension/assets/157915007/bf58c519-0f86-455b-a317-15a5a161299b)
 
 ---
 
