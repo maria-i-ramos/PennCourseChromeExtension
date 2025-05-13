@@ -5,7 +5,8 @@ Penn Course Search is a Chrome extension that allows students to search for cour
 To learn more, please visit our [landing page](https://mattfu25.github.io/penn-course-search-landing-page/)!
 
 ## Authors
-Franci Branda-Chen, Eshaan Chichula, Matt Fu, Jake G. Murphy
+Chaesley Park, Claire Zhao, Maria Ramos, Ioannis Kalaitzidis ...
+Forked from Franci Branda-Chen, Eshaan Chichula, Matt Fu, Jake G. Murphy
 
 # How To Use The Penn Course Chrome Extension
 
@@ -180,6 +181,7 @@ Let us know if you have suggestions, find bugs, or want to contribute!
 MIT License
 
 Copyright (c) 2024 Franci Branda-Chen, Eshaan Chichula, Matt Fu, Jake G. Murphy
+2025 Chaesley Park, Claire Zhao, Maria Ramos, Ioannis Kalaitzidis
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
