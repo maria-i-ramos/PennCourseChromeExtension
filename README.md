@@ -36,10 +36,24 @@ This comprehensive guide walks you through every feature of the Penn Course Chro
 ---
 
 ## 🛠 Installation and Setup
+Download the latest release from [Releases](https://github.com/fbc101/PennCourseChromeExtension/releases), and unzip the folder.
 
-1. Install the extension from the Chrome Web Store.
-2. Pin it to your toolbar via the Chrome Extensions menu (click the puzzle piece → pin).
-3. Click the Penn Course icon in the toolbar to open the popup.
+Now, open a google chrome tab and follow these steps:
+
+1. Click the extension button
+![pcs1](https://github.com/fbc101/PennCourseChromeExtension/assets/157915007/9be2a08d-ed4d-4f70-8364-0bb6bfe740b0)
+
+2. Click manage extension
+![pcs2](https://github.com/fbc101/PennCourseChromeExtension/assets/157915007/f4f6883b-ffd0-45d5-9f35-c689b084dabf)
+
+3. Enable Developer Mode on the top right and click the `load unpacked` button
+![pcs3](https://github.com/fbc101/PennCourseChromeExtension/assets/157915007/06f45074-c918-4cb5-bc27-126f2c04f9f3)
+
+4. Select the unzipped folder created
+
+5. Pin the extension for more convenience!
+![pcs6](https://github.com/fbc101/PennCourseChromeExtension/assets/157915007/766fc32c-0ba6-4972-9978-a60e5040977b)
+
 
 ---
 
