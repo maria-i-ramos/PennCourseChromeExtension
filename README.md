@@ -5,8 +5,17 @@ Penn Course Search Plus is a Chrome extension forked from Penn Course Search tha
 To learn more, please visit our [landing page](chaelseypark.github.io/PennCourseSearchPlus)!
 
 ## Authors
-Chaesley Park, Claire Zhao, Maria Ramos, Ioannis Kalaitzidis ...
-Forked from Franci Branda-Chen, Eshaan Chichula, Matt Fu, Jake G. Murphy
+- Chaesley Park,
+- Claire Zhao,
+- Maria Ramos,
+- Ioannis Kalaitzidis
+
+  
+Forked from:
+- Franci Branda-Chen,
+- Eshaan Chichula,
+- Matt Fu,
+- Jake G. Murphy
 
 # How To Use The Penn Course Chrome Extension
 
