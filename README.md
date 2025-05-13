@@ -2,7 +2,7 @@
 ![BiggerLoggoNoBackground](https://github.com/maria-i-ramos/PennCourseChromeExtension/blob/19b7e810abe563aeff1a770834ad03e9737bb3ba/src/assets/PCSPLogo.png)  
 Penn Course Search Plus is a Chrome extension forked from Penn Course Search that allows students to search for courses in the Penn catalog from the comfort of their Chrome toolbar. Our Chrome extension eliminates the need for students to open extra tabs to gather information about a course. Everything they need is conveniently accessible through the pop-up interface and integration with ChatGPT allows for quick no-tab-changing answers.
 
-To learn more, please visit our [landing page](chaelseypark.github.io/PennCourseSearchPlus)!
+To learn more, please visit our [landing page](https://chaelseypark.github.io/PennCourseSearchPlus/)!
 
 ## Authors
 - Chaesley Park,
