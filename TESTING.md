@@ -44,7 +44,7 @@ Manual walkthroughs were conducted to test all user-facing components of the Chr
 ## Prompt Testing
 
 ### Model Used
-- **OpenAI GPT-4-turbo** via API (`gpt-4`)
+- **OpenAI GPT-4o** via API (`gpt-4o`)
 - Prompts tested manually using both the browser interface and console-logged API requests.
 
 ---
